@@ -322,9 +322,13 @@ class PortalView extends GetView<PortalController> {
                   controller.error.value = 'تعذر فتح هذه الصفحة بأمان.';
                 }
               },
+              onLoadStop: (web, url) async {
+                controller.progress.value = 1.0;
+              },
               onProgressChanged: (_, value) =>
                   controller.progress.value = value / 100,
               onReceivedError: (_, request, error) {
+                if (error.type == WebResourceErrorType.CANCELLED) return;
                 if (request.isForMainFrame == true) {
                   controller.error.value =
                       'تعذر تحميل الصفحة. تحقق من الاتصال ثم أعد المحاولة.';
@@ -388,10 +392,12 @@ class PortalView extends GetView<PortalController> {
             Obx(
               () => controller.progress.value >= 1
                   ? const SizedBox.shrink()
-                  : Align(
-                      alignment: Alignment.topCenter,
-                      child: LinearProgressIndicator(
-                        value: controller.progress.value,
+                  : IgnorePointer(
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: LinearProgressIndicator(
+                          value: controller.progress.value,
+                        ),
                       ),
                     ),
             ),
