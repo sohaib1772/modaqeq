@@ -1,0 +1,47 @@
+{
+  "PDFRendering": "Unchanged from 1.1.3",
+  "Change": "Native PDF preparation/share progress overlay; immediate trusted-origin click guard before website fetching; duplicate native operation guard preserved",
+  "Date": "2026-11-05",
+  "Name": "المدقق المحاسبي",
+  "Version": "1.1.4+6",
+  "Tests": "25 Flutter tests passed; Node JS first tap, duplicate blocking, synthetic click, preview exclusion, validation/save failure cleanup, timeout, icon title and origin checks passed",
+  "NativeDeviceUI": "Not re-tested on device for this UI-only update; Flutter widget interaction and JS runtime tests passed",
+  "Releases": [
+    {
+      "ABI": "arm64-v8a",
+      "Version": "1.1.4+6",
+      "SignatureVerified": true,
+      "SameKeyAsPreviousRelease": true,
+      "Debuggable": false,
+      "Bytes": 20978607,
+      "SHA256": "BD9548C3F90D96175C4E2332507D4592DF7447894FB9B434B03E348E114AC7CE",
+      "File": "D:\\ALMIZAN NEW\\mobile_app\\build\\app\\outputs\\flutter-apk\\app-arm64-v8a-release.apk"
+    },
+    {
+      "ABI": "armeabi-v7a",
+      "Version": "1.1.4+6",
+      "SignatureVerified": true,
+      "SameKeyAsPreviousRelease": true,
+      "Debuggable": false,
+      "Bytes": 18343749,
+      "SHA256": "E13B4ABCDC8ADABFD975AF9D2552162CD1D89147D11A6EE9F231CAFE380B2542",
+      "File": "D:\\ALMIZAN NEW\\mobile_app\\build\\app\\outputs\\flutter-apk\\app-armeabi-v7a-release.apk"
+    },
+    {
+      "ABI": "x86_64",
+      "Version": "1.1.4+6",
+      "SignatureVerified": true,
+      "SameKeyAsPreviousRelease": true,
+      "Debuggable": false,
+      "Bytes": 22085166,
+      "SHA256": "3D46322202CD9E38B44CF53A5B34E987801D1D052E2655032599156FE10EC615",
+      "File": "D:\\ALMIZAN NEW\\mobile_app\\build\\app\\outputs\\flutter-apk\\app-x86_64-release.apk"
+    }
+  ],
+  "Analyze": "No issues found",
+  "ServerIntegrity": {
+    "Checked": 1757,
+    "Changed": 0,
+    "Paths": []
+  }
+}

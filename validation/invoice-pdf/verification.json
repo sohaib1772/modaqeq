@@ -1,0 +1,12 @@
+{
+  "pages": 2,
+  "A4_portrait": true,
+  "text_per_page": [
+    164,
+    54
+  ],
+  "invoice_id": true,
+  "total": true,
+  "second_page": true,
+  "editor_excluded": true
+}

@@ -1,0 +1,18 @@
+مفتاح توقيع المدقق المحاسبي
+
+المفتاح: android/signing/almizan-release.jks
+الاسم داخل المفتاح: almizan
+بيانات الفتح: android/key.properties
+
+احتفظ بنسخة احتياطية آمنة من الملفين. لا تشاركهما مع المستخدمين ولا ترفعهما إلى مستودع عام. يحتاج كل تحديث لنفس التطبيق إلى مفتاح التوقيع ذاته. هذه الملفات مستثناة بالفعل من Git.
+
+أمر إعادة البناء:
+flutter build apk --release --split-per-abi --obfuscate --split-debug-info=private-symbols/1.1.3 --no-pub
+
+الناتج:
+build/app/outputs/flutter-apk/app-arm64-v8a-release.apk (الأجهزة الحديثة)
+build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk (أجهزة 32 بت)
+build/app/outputs/flutter-apk/app-x86_64-release.apk (المحاكيات والأجهزة المتوافقة)
+
+
+

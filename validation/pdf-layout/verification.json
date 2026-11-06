@@ -1,0 +1,22 @@
+[
+  {
+    "file": "frame-landscape",
+    "pages": 8,
+    "page_width": 841.91998,
+    "page_height": 594.95996,
+    "right_column_rows": 120,
+    "left_column_rows": 120,
+    "all_120_rows_present": true,
+    "warnings": false
+  },
+  {
+    "file": "page-landscape",
+    "pages": 8,
+    "page_width": 841.91998,
+    "page_height": 594.95996,
+    "right_column_rows": 120,
+    "left_column_rows": 120,
+    "all_120_rows_present": true,
+    "warnings": false
+  }
+]
