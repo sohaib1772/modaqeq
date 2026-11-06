@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:almizan_mobile/services/server_binding.dart';
-import 'package:almizan_mobile/models/server_address.dart';
+import 'package:modaqeq_maktabali/services/server_binding.dart';
+import 'package:modaqeq_maktabali/models/server_address.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

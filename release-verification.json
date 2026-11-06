@@ -1,32 +1,35 @@
 [
   {
     "ABI": "arm64-v8a",
-    "Version": "1.1.4+6",
+    "Version": "1.2.0+7",
     "SignatureVerified": true,
     "SameKeyAsPreviousRelease": true,
     "Debuggable": false,
-    "Bytes": 20978607,
-    "SHA256": "BD9548C3F90D96175C4E2332507D4592DF7447894FB9B434B03E348E114AC7CE",
+    "ExcelCodeIncluded": true,
+    "Bytes": 21372027,
+    "SHA256": "98CAF60C04ED13E0D28FE6E65887E3E69E4129897B45F84159204870C2E29F22",
     "File": "D:\\ALMIZAN NEW\\mobile_app\\build\\app\\outputs\\flutter-apk\\app-arm64-v8a-release.apk"
   },
   {
     "ABI": "armeabi-v7a",
-    "Version": "1.1.4+6",
+    "Version": "1.2.0+7",
     "SignatureVerified": true,
     "SameKeyAsPreviousRelease": true,
     "Debuggable": false,
-    "Bytes": 18343749,
-    "SHA256": "E13B4ABCDC8ADABFD975AF9D2552162CD1D89147D11A6EE9F231CAFE380B2542",
+    "ExcelCodeIncluded": true,
+    "Bytes": 18982933,
+    "SHA256": "0616DA0D1813E4339695394462168E566B8F58A26BDC06A6722AF3BB05B017ED",
     "File": "D:\\ALMIZAN NEW\\mobile_app\\build\\app\\outputs\\flutter-apk\\app-armeabi-v7a-release.apk"
   },
   {
     "ABI": "x86_64",
-    "Version": "1.1.4+6",
+    "Version": "1.2.0+7",
     "SignatureVerified": true,
     "SameKeyAsPreviousRelease": true,
     "Debuggable": false,
-    "Bytes": 22085166,
-    "SHA256": "3D46322202CD9E38B44CF53A5B34E987801D1D052E2655032599156FE10EC615",
+    "ExcelCodeIncluded": true,
+    "Bytes": 22544122,
+    "SHA256": "6234882DFBE6FA7570F7ED2C644E3561DC1A4BB6B9231339AB1294DF2B95BBB0",
     "File": "D:\\ALMIZAN NEW\\mobile_app\\build\\app\\outputs\\flutter-apk\\app-x86_64-release.apk"
   }
 ]

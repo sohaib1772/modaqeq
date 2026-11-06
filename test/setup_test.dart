@@ -3,8 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:almizan_mobile/controllers/portal_controller.dart';
-import 'package:almizan_mobile/views/portal_view.dart';
+import 'package:modaqeq_maktabali/controllers/portal_controller.dart';
+import 'package:modaqeq_maktabali/views/portal_view.dart';
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));

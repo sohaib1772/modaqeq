@@ -16,7 +16,7 @@ if (gradle.startParameter.taskNames.any { it.contains("release", ignoreCase = tr
 }
 
 android {
-    namespace = "com.almizan.almizan_mobile"
+    namespace = "com.modaqeq.maktabali"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -30,7 +30,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.almizan.almizan_mobile"
+        applicationId = "com.modaqeq.maktabali"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

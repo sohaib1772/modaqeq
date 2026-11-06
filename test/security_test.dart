@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:almizan_mobile/models/server_address.dart';
-import 'package:almizan_mobile/models/bridge_request.dart';
-import 'package:almizan_mobile/services/portal_transport.dart';
-import 'package:almizan_mobile/services/print_document.dart';
+import 'package:modaqeq_maktabali/models/server_address.dart';
+import 'package:modaqeq_maktabali/models/bridge_request.dart';
+import 'package:modaqeq_maktabali/services/portal_transport.dart';
+import 'package:modaqeq_maktabali/services/print_document.dart';
 
 class FixtureTransport extends PortalTransport {
   final fetched = <Uri>[];

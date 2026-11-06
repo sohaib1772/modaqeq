@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:almizan_mobile/services/print_feedback_script.dart';
+import 'package:modaqeq_maktabali/services/print_feedback_script.dart';
 
 void main() {
   Directory('build').createSync();

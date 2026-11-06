@@ -244,18 +244,26 @@ class PortalView extends GetView<PortalController> {
                 useShouldOverrideUrlLoading: true,
                 useOnDownloadStart: true,
                 supportMultipleWindows: true,
-                javaScriptCanOpenWindowsAutomatically: false,
+                javaScriptCanOpenWindowsAutomatically: true,
                 allowFileAccess: false,
                 allowContentAccess: true,
                 mixedContentMode: MixedContentMode.MIXED_CONTENT_NEVER_ALLOW,
-                allowsBackForwardNavigationGestures: false,
+                allowsBackForwardNavigationGestures: true,
+                allowsInlineMediaPlayback: true,
                 isInspectable: false,
               ),
               onWebViewCreated: controller.created,
               shouldOverrideUrlLoading: (web, action) async {
                 final uri = action.request.url;
+                if (uri == null) return NavigationActionPolicy.ALLOW;
+
+                if (uri.scheme == 'javascript' ||
+                    uri.scheme == 'about' ||
+                    uri.scheme == 'data') {
+                  return NavigationActionPolicy.ALLOW;
+                }
                 if (controller.server.value!.contains(uri)) {
-                  if (uri!.path == '/database-admin-download') {
+                  if (uri.path == '/database-admin-download') {
                     // Capture known one-use backup links before WebView consumes them.
                     await controller.handle(
                       '{"version":1,"id":"navigation-${DateTime.now().microsecondsSinceEpoch}","type":"download","url":${jsonEncode(uri.toString())}}',
@@ -264,9 +272,10 @@ class PortalView extends GetView<PortalController> {
                   }
                   return NavigationActionPolicy.ALLOW;
                 }
-                if (action.isForMainFrame &&
-                    uri != null &&
-                    ['https', 'http', 'mailto', 'tel'].contains(uri.scheme)) {
+                if (!action.isForMainFrame) {
+                  return NavigationActionPolicy.ALLOW;
+                }
+                if (['https', 'http', 'mailto', 'tel'].contains(uri.scheme)) {
                   if (await controller.confirm(
                     'فتح رابط خارجي',
                     'هل تريد فتح الرابط خارج التطبيق؟',
@@ -276,7 +285,36 @@ class PortalView extends GetView<PortalController> {
                 }
                 return NavigationActionPolicy.CANCEL;
               },
-              onCreateWindow: (_, __) async => false,
+              onCreateWindow: (web, action) async {
+                final actionUrl = action.request.url;
+                if (actionUrl != null) {
+                  final targetUri = Uri.tryParse(actionUrl.toString());
+                  if (targetUri != null &&
+                      controller.server.value?.contains(targetUri) == true) {
+                    await web.loadUrl(urlRequest: action.request);
+                    return true;
+                  }
+                  if (targetUri != null &&
+                      [
+                        'https',
+                        'http',
+                        'mailto',
+                        'tel',
+                      ].contains(targetUri.scheme)) {
+                    if (await controller.confirm(
+                      'فتح رابط خارجي',
+                      'هل تريد فتح الرابط خارج التطبيق؟',
+                    )) {
+                      await launchUrl(
+                        targetUri,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    }
+                    return true;
+                  }
+                }
+                return false;
+              },
               onLoadStart: (web, url) async {
                 controller.invalidate();
                 if (!controller.server.value!.contains(url)) {

@@ -1,4 +1,4 @@
-package com.almizan.almizan_mobile
+package com.modaqeq.maktabali
 
 import io.flutter.embedding.android.FlutterActivity
 import android.print.PortalPdfExporter

@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/parser.dart';
-import 'package:almizan_mobile/services/print_document.dart';
-import 'package:almizan_mobile/services/portal_transport.dart';
-import 'package:almizan_mobile/models/server_address.dart';
+import 'package:modaqeq_maktabali/services/print_document.dart';
+import 'package:modaqeq_maktabali/services/portal_transport.dart';
+import 'package:modaqeq_maktabali/models/server_address.dart';
 
 void main() {
   final server = ServerAddress.parse('fixture.example');

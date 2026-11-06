@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:almizan_mobile/controllers/portal_controller.dart';
-import 'package:almizan_mobile/views/splash_view.dart';
-import 'package:almizan_mobile/views/portal_view.dart';
+import 'package:modaqeq_maktabali/controllers/portal_controller.dart';
+import 'package:modaqeq_maktabali/views/splash_view.dart';
+import 'package:modaqeq_maktabali/views/portal_view.dart';
 
 void main() {
   tearDown(() => Get.reset());

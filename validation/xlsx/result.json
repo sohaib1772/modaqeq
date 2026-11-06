@@ -1,0 +1,26 @@
+{
+  "reader": "openpyxl 3.1.5",
+  "workbooks": [
+    {
+      "file": "statement.xlsx",
+      "rows": 124,
+      "columns": 12,
+      "rtl": true,
+      "verified": true
+    },
+    {
+      "file": "inventory.xlsx",
+      "rows": 4,
+      "columns": 6,
+      "rtl": true,
+      "verified": true
+    },
+    {
+      "file": "invoice.xlsx",
+      "rows": 10,
+      "columns": 3,
+      "rtl": true,
+      "verified": true
+    }
+  ]
+}

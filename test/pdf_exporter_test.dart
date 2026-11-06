@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:almizan_mobile/services/pdf_exporter.dart';
+import 'package:modaqeq_maktabali/services/pdf_exporter.dart';
 
 void main() {
   final binding = TestWidgetsFlutterBinding.ensureInitialized();

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,9 @@ import '../services/portal_transport.dart';
 import '../services/print_document.dart';
 import '../services/server_binding.dart';
 import '../services/pdf_exporter.dart';
+import '../services/xlsx_exporter.dart';
+import '../models/export_format.dart';
+import '../views/export_format_dialog.dart';
 
 class PortalController extends GetxController {
   final server = Rxn<ServerAddress>();
@@ -30,6 +34,8 @@ class PortalController extends GetxController {
   int generation = 0;
   final Set<String> seen = {};
   bool operation = false;
+  bool choosingExportFormat = false;
+  String? activeRequestId;
   Future<void> restore() async {
     final temp = await getTemporaryDirectory();
     await for (final entry in temp.list()) {
@@ -251,6 +257,7 @@ class PortalController extends GetxController {
       return;
     }
     operation = true;
+    activeRequestId = request.id;
     final hasPrintFeedback =
         request.type == 'print_html' || printMessage.value.isNotEmpty;
     if (hasPrintFeedback) {
@@ -259,13 +266,14 @@ class PortalController extends GetxController {
     }
     final timer = Timer(const Duration(seconds: 55), () async {
       if (epoch == generation) {
+        if (choosingExportFormat && Get.isDialogOpen == true) Get.back();
         await complete(
           request.id,
           false,
           'انتهت المهلة. تحقق من العملية قبل تكرارها.',
           epoch,
         );
-        invalidate();
+        if (activeRequestId == request.id && epoch == generation) invalidate();
       }
     });
     try {
@@ -273,27 +281,57 @@ class PortalController extends GetxController {
       if (request.type == 'download') {
         await download(selected, Uri.parse(request.data['url']), epoch);
       } else {
-        final document = await PrintDocument(
-          transport,
-          selected,
-        ).prepareDocument(request.data['html']);
+        printMessage.value = 'اختر صيغة المشاركة';
+        choosingExportFormat = true;
+        ExportFormat? format;
+        try {
+          format = await Get.dialog<ExportFormat>(const ExportFormatDialog());
+        } finally {
+          choosingExportFormat = false;
+        }
+        if (format == null) throw const FormatException('تم إلغاء المشاركة.');
         if (epoch != generation) return;
-        final bytes = await pdfExporter.convert(
-          document.html,
-          landscape: document.landscape,
-        );
+        printMessage.value = format == ExportFormat.pdf
+            ? 'جارٍ تجهيز ملف PDF…'
+            : 'جارٍ تجهيز ملف Excel…';
+        await WidgetsBinding.instance.endOfFrame;
+        late Uint8List bytes;
+        if (format == ExportFormat.pdf) {
+          final document = await PrintDocument(
+            transport,
+            selected,
+          ).prepareDocument(request.data['html']);
+          if (epoch != generation) return;
+          bytes = await pdfExporter.convert(
+            document.html,
+            landscape: document.landscape,
+          );
+        } else {
+          bytes = (await compute(
+            buildXlsx,
+            request.data['html'] as String,
+          )).bytes;
+        }
         if (epoch != generation) return;
         final directory = await getTemporaryDirectory();
         final folder = await Directory(
           '${directory.path}/portal_${DateTime.now().microsecondsSinceEpoch}',
         ).create();
-        final file = File('${folder.path}/مستند.pdf');
+        final extension = format == ExportFormat.pdf ? 'pdf' : 'xlsx';
+        final file = File('${folder.path}/مستند.$extension');
         await file.writeAsBytes(bytes, flush: true);
         if (epoch != generation) return;
         printMessage.value = 'جارٍ فتح المشاركة…';
         final result = await SharePlus.instance.share(
           ShareParams(
-            files: [XFile(file.path, mimeType: 'application/pdf')],
+            files: [
+              XFile(
+                file.path,
+                mimeType: format == ExportFormat.pdf
+                    ? 'application/pdf'
+                    : XlsxExporter.mime,
+              ),
+            ],
             excludedCupertinoActivities: [CupertinoActivityType.print],
             sharePositionOrigin: const Rect.fromLTWH(24, 80, 1, 1),
           ),
@@ -313,6 +351,7 @@ class PortalController extends GetxController {
     } finally {
       timer.cancel();
       operation = false;
+      activeRequestId = null;
       if (hasPrintFeedback) {
         clearPrintFeedback();
         await releasePrintClickGuard();

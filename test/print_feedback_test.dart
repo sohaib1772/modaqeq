@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:almizan_mobile/controllers/portal_controller.dart';
-import 'package:almizan_mobile/views/print_progress_overlay.dart';
+import 'package:modaqeq_maktabali/controllers/portal_controller.dart';
+import 'package:modaqeq_maktabali/views/print_progress_overlay.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

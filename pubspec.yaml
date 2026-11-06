@@ -1,4 +1,4 @@
-name: almizan_mobile
+name: modaqeq_maktabali
 description: "المدقق المحاسبي"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.4+6
+version: 1.2.0+7
 
 environment:
   sdk: ^3.9.0
@@ -45,6 +45,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.7
+  archive: ^4.6.0
+  xml: ^6.6.1
 
 dev_dependencies:
   flutter_test:
@@ -106,6 +108,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
 
 
 
